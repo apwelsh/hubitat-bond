@@ -374,7 +374,12 @@ def createChildDevices() {
 					else
 						fanDevice.addChildDevice("bond", "BOND Fan Light", hubId + ":bond:" + fan + ":light", ["name": state.fanList[fan] + " Light", isComponent: true])
 				}
+			} else {
+				fanDevice.getChildDevices().each { 
+					fanDevice.deleteChildDevice(it.deviceNetworkId)
+				}
 			}
+
 		}
 	}
 	
